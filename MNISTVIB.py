@@ -7,10 +7,10 @@
 
 # In[ ]:
 
-
+#import tkinter
 import numpy as np
-import matplotlib.pyplot as plt
-get_ipython().magic(u'matplotlib inline')
+#import matplotlib.pyplot as plt
+#get_ipython().magic(u'matplotlib inline')
 import tensorflow as tf
 
 
@@ -85,7 +85,7 @@ info_loss = tf.reduce_sum(tf.reduce_mean(
     ds.kl_divergence(encoding, prior), 0)) / math.log(2)
 
 total_loss = class_loss + BETA * info_loss
-
+# until here the network is complete
 
 # In[7]:
 
@@ -149,8 +149,9 @@ for epoch in range(200):
     for step in range(steps_per_batch):
         im, ls = mnist_data.train.next_batch(batch_size)
         sess.run(train_tensor, feed_dict={images: im, labels: ls})
-    print "{}: IZY={:.2f}\tIZX={:.2f}\tacc={:.4f}\tavg_acc={:.4f}\terr={:.4f}\tavg_err={:.4f}".format(
-        epoch, *evaluate())
+    #print "{}: IZY={:.2f}\tIZX={:.2f}\tacc={:.4f}\tavg_acc={:.4f}\terr={:.4f}\tavg_err={:.4f}".format(
+    #    epoch, *evaluate())
+    print("{}: IZY={:.2f}\tIZX={:.2f}\tacc={:.4f}\tavg_acc={:.4f}\terr={:.4f}\tavg_err={:.4f}".format(epoch, *evaluate()))
     sys.stdout.flush()
     
 savepth = saver.save(sess, '/tmp/mnistvib', global_step)
